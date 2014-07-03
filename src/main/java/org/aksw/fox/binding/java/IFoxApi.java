@@ -15,6 +15,8 @@ public interface IFoxApi {
 
     public IFoxApi setTask(FoxParameter.TASK task);
 
+    public IFoxApi setLightVersion(FoxParameter.FOXLIGHT foxlight);
+
     public IFoxApi setOutputFormat(FoxParameter.OUTPUT out);
 
     public FoxResponse send();

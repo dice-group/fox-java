@@ -10,6 +10,10 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.aksw.fox.binding.java.FoxParameter.FOXLIGHT;
+import org.aksw.fox.binding.java.FoxParameter.INPUT;
+import org.aksw.fox.binding.java.FoxParameter.OUTPUT;
+import org.aksw.fox.binding.java.FoxParameter.TASK;
 import org.apache.log4j.Logger;
 
 public class FoxApi implements IFoxApi {
@@ -19,16 +23,14 @@ public class FoxApi implements IFoxApi {
     public static final String defaultApiUrl = "http://139.18.2.164:4444/api";
     private String             apiUrl        = defaultApiUrl;
 
+    // defaults
     private String             input         = "";
-    private String             type          = "";
-    private String             task          = "";
-    private String             output        = "";
+    private String             type          = FoxParameter.inputs.get(INPUT.TEXT);
+    private String             task          = FoxParameter.tasks.get(TASK.NER);
+    private String             light         = FoxParameter.foxlights.get(FOXLIGHT.OFF);
+    private String             output        = FoxParameter.outputs.get(OUTPUT.TURTLE);
 
     private FoxResponse        foxRes        = null;
-
-    public static void main(String[] a) throws Exception {
-
-    }
 
     @Override
     public IFoxApi setApiURL(URL url) {
@@ -38,26 +40,32 @@ public class FoxApi implements IFoxApi {
 
     @Override
     public IFoxApi setInput(String input) {
-        type = FoxParameter.inputs.get(FoxParameter.INPUT.TEXT);
+        type = FoxParameter.inputs.get(INPUT.TEXT);
         this.input = input;
         return this;
     }
 
     @Override
     public IFoxApi setInput(URL url) {
-        type = FoxParameter.inputs.get(FoxParameter.INPUT.URL);
+        type = FoxParameter.inputs.get(INPUT.URL);
         this.input = url.toExternalForm();
         return this;
     }
 
     @Override
-    public IFoxApi setTask(FoxParameter.TASK task) {
+    public IFoxApi setTask(TASK task) {
         this.task = FoxParameter.tasks.get(task);
         return this;
     }
 
     @Override
-    public IFoxApi setOutputFormat(FoxParameter.OUTPUT output) {
+    public IFoxApi setLightVersion(FOXLIGHT foxlight) {
+        this.light = FoxParameter.foxlights.get(foxlight);
+        return this;
+    }
+
+    @Override
+    public IFoxApi setOutputFormat(OUTPUT output) {
         this.output = FoxParameter.outputs.get(output);
         return this;
     }
@@ -75,6 +83,10 @@ public class FoxApi implements IFoxApi {
                     concat(FoxParameter.taskKey).
                     concat("=").
                     concat(task).
+                    concat("&").
+                    concat(FoxParameter.foxlightKey).
+                    concat("=").
+                    concat(light).
                     concat("&").
                     concat(FoxParameter.outputKey).
                     concat("=").
