@@ -4,8 +4,6 @@ import java.util.EnumMap;
 
 import org.apache.jena.riot.Lang;
 
-import com.hp.hpl.jena.util.FileUtils;
-
 public class FoxParameter {
 
     public static final String inputKey    = "input";
@@ -16,7 +14,7 @@ public class FoxParameter {
     public static final String foxlightKey = "foxlight";
 
     public enum OUTPUT {
-        RDFXML, XMLAbbrev, TURTLE, NTRIPLES, N3, RDFJSON, JSONLD, TRIG;
+        RDFXML, TURTLE, NTRIPLES, RDFJSON, JSONLD, TRIG, NQUADS;
     }
 
     public enum INPUT {
@@ -50,13 +48,12 @@ public class FoxParameter {
                                                           private static final long serialVersionUID = -634863251164405026L;
                                                           {
                                                               put(OUTPUT.RDFXML, Lang.RDFXML.getName());
-                                                              put(OUTPUT.XMLAbbrev, FileUtils.langXMLAbbrev);
                                                               put(OUTPUT.TURTLE, Lang.TURTLE.getName());
                                                               put(OUTPUT.NTRIPLES, Lang.NTRIPLES.getName());
-                                                              put(OUTPUT.N3, Lang.N3.getName());
                                                               put(OUTPUT.RDFJSON, Lang.RDFJSON.getName());
                                                               put(OUTPUT.JSONLD, Lang.JSONLD.getName());
                                                               put(OUTPUT.TRIG, Lang.TRIG.getName());
+                                                              put(OUTPUT.NQUADS, Lang.NQUADS.getName());
                                                           }
                                                       };
 
