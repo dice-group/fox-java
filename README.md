@@ -13,7 +13,7 @@ Java bindings for FOX - Federated Knowledge Extraction Framework
         <repository>
             <id>maven.aksw.internal</id>
             <name>University Leipzig, AKSW Maven2 Repository</name>
-            <url>http://maven.aksw.org/archiva/repository/internal</url>
+            <url>http://maven.aksw.org/repository/internal</url>
         </repository>
     </repositories>
     <dependencies>
