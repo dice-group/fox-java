@@ -8,18 +8,17 @@ Java bindings for FOX - Federated Knowledge Extraction Framework
 
 
 ### Maven
-
+    <dependencies>
+      <dependency>
+        <groupId>com.github.renespeck</groupId>
+        <artifactId>fox-java</artifactId>
+        <version>a22a28b17a</version>
+      </dependency>
+    </dependencies>
+    
     <repositories>
         <repository>
-            <id>maven.aksw.internal</id>
-            <name>University Leipzig, AKSW Maven2 Repository</name>
-            <url>http://maven.aksw.org/repository/internal</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
-    <dependencies>
-        <dependency>
-            <groupId>org.aksw</groupId>
-            <artifactId>fox-java</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-    </dependencies>
