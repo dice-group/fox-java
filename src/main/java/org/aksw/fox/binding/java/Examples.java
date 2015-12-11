@@ -10,26 +10,29 @@ public class Examples {
   }
 
   public static void example_one() throws MalformedURLException {
-    URL api = new URL("http://0.0.0.0:4444/api");
-    IFoxApi fox;
-    fox = new FoxApi().setApiURL(api)
-        .setInput(new URL("https://en.wikipedia.org/wiki/Leipzig_University"))
-        .setOutputFormat(FoxParameter.OUTPUT.JSONLD);
+
+    IFoxApi fox = new FoxApi();
+    // URL api = new URL("http://0.0.0.0:4444/api");
+    // fox.setApiURL(api);
+
+    fox.setInput(new URL("https://en.wikipedia.org/wiki/Leipzig_University"));
+    fox.setOutputFormat(FoxParameter.OUTPUT.JSONLD);
 
     FoxResponse response = fox.send();
-
     System.out.println(response.getOutput());
   }
 
   public static void example_two() throws MalformedURLException {
+
     IFoxApi fox = new FoxApi();
-    // URL api = new URL("http://0.0.0.0:4444/api");
-    // fox.setApiURL(api);
-    fox.setTask(FoxParameter.TASK.NER).setOutputFormat(FoxParameter.OUTPUT.TURTLE)
-        .setLang(FoxParameter.LANG.EN)
-        .setInput("The philosopher and mathematician Leibniz was born in Leipzig.")
-        // .setLightVersion(FoxParameter.FOXLIGHT.ENStanford)
-        ;
+    URL api = new URL("http://0.0.0.0:4444/api");
+    fox.setApiURL(api);
+
+    fox.setTask(FoxParameter.TASK.NER);
+    fox.setOutputFormat(FoxParameter.OUTPUT.TURTLE);
+    fox.setLang(FoxParameter.LANG.EN);
+    fox.setInput("The philosopher and mathematician Leibniz was born in Leipzig.");
+    // fox.setLightVersion(FoxParameter.FOXLIGHT.ENStanford);
 
     FoxResponse response = fox.send();
 
