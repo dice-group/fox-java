@@ -4,21 +4,21 @@ import java.net.URL;
 
 public interface IFoxApi {
 
-    public IFoxApi setApiURL(URL url);
+  public IFoxApi setApiURL(URL url);
 
-    public IFoxApi setInput(String input);
+  public IFoxApi setInput(String input);
 
-    public IFoxApi setInput(URL url);
+  public IFoxApi setInput(URL url);
 
-    // remove this and make it auto.
-    // public IFoxWebApi setInputType(FoxParameter.INPUT type);
+  public IFoxApi setTask(FoxParameter.TASK task);
 
-    public IFoxApi setTask(FoxParameter.TASK task);
+  public IFoxApi setLightVersion(FoxParameter.FOXLIGHT foxlight);
 
-    public IFoxApi setLightVersion(FoxParameter.FOXLIGHT foxlight);
+  public IFoxApi setOutputFormat(FoxParameter.OUTPUT out);
 
-    public IFoxApi setOutputFormat(FoxParameter.OUTPUT out);
+  public IFoxApi setLang(FoxParameter.LANG lang);
 
-    public FoxResponse send();
+
+  public FoxResponse send();
 
 }
