@@ -29,7 +29,7 @@ System.out.println(response.getLog());
       <dependency>
         <groupId>com.github.renespeck</groupId>
         <artifactId>fox-java</artifactId>
-        <version>9a286fe39b</version>
+        <version>904cabeee3</version>
       </dependency>
     </dependencies>
     
