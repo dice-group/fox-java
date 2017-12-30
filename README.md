@@ -1,4 +1,4 @@
-[1]: ../src/main/java/org/aksw/fox/binding/java/Examples.java
+[1]: ./src/main/java/org/aksw/fox/binding/java/Examples.java
 
 ### The code is out of date and needs an update.
 
