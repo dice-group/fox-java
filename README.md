@@ -1,10 +1,14 @@
+[1]: ../src/main/java/org/aksw/fox/binding/java/Examples.java
+
+### The code is out of date and needs an update.
+
 fox-java
 ========
 
 Java bindings for FOX - Federated Knowledge Extraction Framework
 
 
-[Here] (https://github.com/renespeck/fox-java/blob/master/src/main/java/org/aksw/fox/binding/java/Examples.java) you can find an example.
+In [Examples.java][1] you can find an example.
 
 ```Java
 IFoxApi fox = new FoxApi();
