@@ -4,6 +4,11 @@ import java.util.EnumMap;
 
 import org.apache.jena.riot.Lang;
 
+/**
+ *
+ * @author Ren&eacute; Speck <speck@informatik.uni-leipzig.de>
+ *
+ */
 public class FoxParameter {
 
   public static final String inputKey = "input";

@@ -2,6 +2,11 @@ package org.aksw.fox.binding.java;
 
 import java.net.URL;
 
+/**
+ *
+ * @author Ren&eacute; Speck <speck@informatik.uni-leipzig.de>
+ *
+ */
 public interface IFoxApi {
 
   public IFoxApi setApiURL(URL url);
@@ -18,7 +23,6 @@ public interface IFoxApi {
 
   public IFoxApi setLang(FoxParameter.LANG lang);
 
-
-  public FoxResponse send();
+  public String send();
 
 }
