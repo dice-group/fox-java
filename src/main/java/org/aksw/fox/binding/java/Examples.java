@@ -27,7 +27,7 @@ public class Examples {
     fox.setOutputFormat(FoxParameter.OUTPUT.TURTLE);
     fox.setLang(FoxParameter.LANG.DE);
     fox.setInput("Die Universität Leipzig liegt in Sachsen.");
-    fox.setLightVersion(FoxParameter.FOXLIGHT.DEBalie);
+    // fox.setLightVersion(FoxParameter.FOXLIGHT.DEBalie);
     LOG.info(fox.send());
   }
 }
