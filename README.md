@@ -13,8 +13,8 @@ In [Examples.java][1] you can find an example.
 ```Java
 IFoxApi fox = new FoxApi();
 
-//URL api = new URL("http://0.0.0.0:4444/api");
-//fox.setApiURL(api);
+URL api = new URL("http://0.0.0.0:4444/fox");
+fox.setApiURL(api);
 
 fox.setTask(FoxParameter.TASK.NER);
 fox.setOutputFormat(FoxParameter.OUTPUT.TURTLE);
@@ -22,18 +22,14 @@ fox.setLang(FoxParameter.LANG.EN);
 fox.setInput("The philosopher and mathematician Leibniz was born in Leipzig.");
 // fox.setLightVersion(FoxParameter.FOXLIGHT.ENStanford);
 
-FoxResponse response = fox.send();
-
-System.out.println(response.getInput());
-System.out.println(response.getOutput());
-System.out.println(response.getLog());
+String response = fox.send();
 ```
 ### Maven
     <dependencies>
       <dependency>
         <groupId>com.github.renespeck</groupId>
         <artifactId>fox-java</artifactId>
-        <version>904cabeee3</version>
+        <version>78d7eb103e</version>
       </dependency>
     </dependencies>
     
