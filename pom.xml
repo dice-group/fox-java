@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.aksw</groupId>
 	<artifactId>fox-java</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>fox-java</name>
 	<packaging>jar</packaging>
 	<properties>

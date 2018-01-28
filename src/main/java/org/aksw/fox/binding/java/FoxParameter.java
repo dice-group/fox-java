@@ -28,7 +28,7 @@ public class FoxParameter {
   }
 
   public enum TASK {
-    NER;
+    NER, RE;
   }
 
   public enum HTML {
@@ -43,94 +43,58 @@ public class FoxParameter {
     DE, EN, FR, ES, NL;// , IT;
   }
 
-  public static EnumMap<LANG, String> langs = new EnumMap<LANG, String>(LANG.class) {
+  public static EnumMap<LANG, String> langs = new EnumMap<LANG, String>(LANG.class);
+  static {
+    langs.put(LANG.DE, "de");
+    langs.put(LANG.EN, "en");
+    langs.put(LANG.FR, "fr");
+    langs.put(LANG.ES, "es");
+    langs.put(LANG.NL, "nl");
+  }
 
-    private static final long serialVersionUID = -2227261015557322237L;
+  public static EnumMap<FOXLIGHT, String> foxlights = new EnumMap<FOXLIGHT, String>(FOXLIGHT.class);
+  static {
+    foxlights.put(FOXLIGHT.OFF, "off");
+    foxlights.put(FOXLIGHT.DESpotlight, "org.aksw.fox.tools.ner.de.SpotlightDE");
+    foxlights.put(FOXLIGHT.DEStanford, "org.aksw.fox.tools.ner.de.StanfordDE");
+    foxlights.put(FOXLIGHT.DEBalie, "org.aksw.fox.tools.ner.de.BalieDE");
+    foxlights.put(FOXLIGHT.ENStanford, "org.aksw.fox.tools.ner.en.StanfordEN");
+    foxlights.put(FOXLIGHT.ENBalie, "org.aksw.fox.tools.ner.en.BalieEN");
+    foxlights.put(FOXLIGHT.ENOpenNLP, "org.aksw.fox.tools.ner.en.OpenNLPEN");
+    foxlights.put(FOXLIGHT.ENIllinoise, "org.aksw.fox.tools.ner.en.IllinoisExtendedEN");
+    foxlights.put(FOXLIGHT.FRBalie, "org.aksw.fox.tools.ner.fr.BalieFR");
+    foxlights.put(FOXLIGHT.FRSpotlight, "org.aksw.fox.tools.ner.fr.SpotlightFR");
+    foxlights.put(FOXLIGHT.FROpenNLP, "org.aksw.fox.tools.ner.fr.OpenNLPFR");
+    foxlights.put(FOXLIGHT.NLSpotlight, "org.aksw.fox.tools.ner.nl.SpotlightNL");
+    foxlights.put(FOXLIGHT.NLOpenNLP, "org.aksw.fox.tools.ner.nl.OpenNLPNL");
+  }
 
-    {
-      put(LANG.DE, "de");
-      put(LANG.EN, "en");
-      put(LANG.FR, "fr");
-      put(LANG.ES, "es");
-      put(LANG.NL, "nl");
-      // put(LANG.IT, "it");
-    }
-  };
+  public static EnumMap<OUTPUT, String> outputs = new EnumMap<OUTPUT, String>(OUTPUT.class);
+  static {
+    outputs.put(OUTPUT.RDFXML, Lang.RDFXML.getName());
+    outputs.put(OUTPUT.TURTLE, Lang.TURTLE.getName());
+    outputs.put(OUTPUT.NTRIPLES, Lang.NTRIPLES.getName());
+    outputs.put(OUTPUT.RDFJSON, Lang.RDFJSON.getName());
+    outputs.put(OUTPUT.JSONLD, Lang.JSONLD.getName());
+    outputs.put(OUTPUT.TRIG, Lang.TRIG.getName());
+    outputs.put(OUTPUT.NQUADS, Lang.NQUADS.getName());
+  }
 
-  public static EnumMap<FOXLIGHT, String> foxlights =
-      new EnumMap<FOXLIGHT, String>(FOXLIGHT.class) {
-        private static final long serialVersionUID = -3143629487718074037L;
+  public static EnumMap<INPUT, String> inputs = new EnumMap<INPUT, String>(INPUT.class);
+  static {
+    inputs.put(INPUT.TEXT, "text");
+    inputs.put(INPUT.URL, "url");
+  }
 
-        {
-          put(FOXLIGHT.OFF, "off");
-        }
+  public static EnumMap<TASK, String> tasks = new EnumMap<TASK, String>(TASK.class);
+  static {
+    tasks.put(TASK.NER, "NER");
+    tasks.put(TASK.RE, "RE");
+  }
 
-        {
-          put(FOXLIGHT.DESpotlight, "org.aksw.fox.tools.ner.de.SpotlightDE");
-          put(FOXLIGHT.DEStanford, "org.aksw.fox.tools.ner.de.StanfordDE");
-          put(FOXLIGHT.DEBalie, "org.aksw.fox.tools.ner.de.BalieDE");
-        }
-
-        {
-          put(FOXLIGHT.ENStanford, "org.aksw.fox.tools.ner.en.StanfordEN");
-          put(FOXLIGHT.ENBalie, "org.aksw.fox.tools.ner.en.BalieEN");
-          put(FOXLIGHT.ENOpenNLP, "org.aksw.fox.tools.ner.en.OpenNLPEN");
-          put(FOXLIGHT.ENIllinoise, "org.aksw.fox.tools.ner.en.IllinoisExtendedEN");
-        }
-
-        {
-          put(FOXLIGHT.FRBalie, "org.aksw.fox.tools.ner.fr.BalieFR");
-          put(FOXLIGHT.FRSpotlight, "org.aksw.fox.tools.ner.fr.SpotlightFR");
-          put(FOXLIGHT.FROpenNLP, "org.aksw.fox.tools.ner.fr.OpenNLPFR");
-        }
-
-        {
-          put(FOXLIGHT.NLSpotlight, "org.aksw.fox.tools.ner.nl.SpotlightNL");
-          put(FOXLIGHT.NLOpenNLP, "org.aksw.fox.tools.ner.nl.OpenNLPNL");
-        }
-      };
-
-  public static EnumMap<OUTPUT, String> outputs = new EnumMap<OUTPUT, String>(OUTPUT.class) {
-    private static final long serialVersionUID = -634863251164405026L;
-
-    {
-      put(OUTPUT.RDFXML, Lang.RDFXML.getName());
-      put(OUTPUT.TURTLE, Lang.TURTLE.getName());
-      put(OUTPUT.NTRIPLES, Lang.NTRIPLES.getName());
-      put(OUTPUT.RDFJSON, Lang.RDFJSON.getName());
-      put(OUTPUT.JSONLD, Lang.JSONLD.getName());
-      put(OUTPUT.TRIG, Lang.TRIG.getName());
-      put(OUTPUT.NQUADS, Lang.NQUADS.getName());
-    }
-  };
-
-  public static EnumMap<INPUT, String> inputs = new EnumMap<INPUT, String>(INPUT.class) {
-    private static final long serialVersionUID = -7480568398834502150L;
-
-    {
-      put(INPUT.TEXT, "text");
-      put(INPUT.URL, "url");
-
-    }
-  };
-
-  public static EnumMap<TASK, String> tasks = new EnumMap<TASK, String>(TASK.class) {
-    private static final long serialVersionUID = -319723597765821322L;
-
-    {
-      put(TASK.NER, "NER");
-
-    }
-  };
-
-  public static EnumMap<HTML, String> htmls = new EnumMap<HTML, String>(HTML.class) {
-    private static final long serialVersionUID = -7593509777668400057L;
-
-    {
-      put(HTML.TRUE, "true");
-      put(HTML.FALSE, "false");
-
-    }
-  };
-
+  public static EnumMap<HTML, String> htmls = new EnumMap<HTML, String>(HTML.class);
+  static {
+    htmls.put(HTML.TRUE, "true");
+    htmls.put(HTML.FALSE, "false");
+  }
 }
