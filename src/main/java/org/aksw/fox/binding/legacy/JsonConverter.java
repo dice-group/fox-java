@@ -1,4 +1,4 @@
-package org.aksw.fox.binding.java;
+package org.aksw.fox.binding.legacy;
 
 import com.google.gson.Gson;
 

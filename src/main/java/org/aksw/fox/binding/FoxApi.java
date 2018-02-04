@@ -1,4 +1,4 @@
-package org.aksw.fox.binding.java;
+package org.aksw.fox.binding;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,11 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import org.aksw.fox.binding.java.FoxParameter.FOXLIGHT;
-import org.aksw.fox.binding.java.FoxParameter.INPUT;
-import org.aksw.fox.binding.java.FoxParameter.LANG;
-import org.aksw.fox.binding.java.FoxParameter.OUTPUT;
-import org.aksw.fox.binding.java.FoxParameter.TASK;
+import org.aksw.fox.binding.FoxParameter.FOXLIGHT;
+import org.aksw.fox.binding.FoxParameter.INPUT;
+import org.aksw.fox.binding.FoxParameter.LANG;
+import org.aksw.fox.binding.FoxParameter.OUTPUT;
+import org.aksw.fox.binding.FoxParameter.TASK;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
@@ -29,11 +29,13 @@ public class FoxApi implements IFoxApi {
 
   // defaults
   private String input = "";
-  private String type = FoxParameter.inputs.get(INPUT.TEXT);
-  private String task = FoxParameter.tasks.get(TASK.NER);
-  private String light = FoxParameter.foxlights.get(FOXLIGHT.OFF);
-  private String output = FoxParameter.outputs.get(OUTPUT.TURTLE);
-  private String lang = FoxParameter.langs.get(LANG.EN);
+  private INPUT type = INPUT.TEXT;
+  private TASK task = TASK.NER;
+  private FOXLIGHT light = FOXLIGHT.OFF;
+  private OUTPUT output = OUTPUT.TURTLE;
+  private LANG lang = LANG.EN;
+
+  protected String plainResponse = null;
 
   @Override
   public IFoxApi setApiURL(final URL url) {
@@ -43,55 +45,55 @@ public class FoxApi implements IFoxApi {
 
   @Override
   public IFoxApi setInput(final String input) {
-    type = FoxParameter.inputs.get(INPUT.TEXT);
+    type = (INPUT.TEXT);
     this.input = input;
     return this;
   }
 
   @Override
   public IFoxApi setInput(final URL url) {
-    type = FoxParameter.inputs.get(INPUT.URL);
+    type = (INPUT.URL);
     input = url.toExternalForm();
     return this;
   }
 
   @Override
   public IFoxApi setTask(final TASK task) {
-    this.task = FoxParameter.tasks.get(task);
+    this.task = (task);
     return this;
   }
 
   @Override
   public IFoxApi setLightVersion(final FOXLIGHT foxlight) {
-    light = FoxParameter.foxlights.get(foxlight);
+    light = (foxlight);
     return this;
   }
 
   @Override
   public IFoxApi setOutputFormat(final OUTPUT output) {
-    this.output = FoxParameter.outputs.get(output);
+    this.output = output;
     return this;
   }
 
   @Override
   public IFoxApi setLang(final LANG lang) {
-    this.lang = FoxParameter.langs.get(lang);
+    this.lang = lang;
     return this;
   }
 
   protected String getParameter() {
     return new JSONObject()//
         .put(FoxParameter.inputKey, input)//
-        .put(FoxParameter.typeKey, type)//
-        .put(FoxParameter.taskKey, task)//
-        .put(FoxParameter.langKey, lang)//
-        .put(FoxParameter.foxlightKey, light)//
-        .put(FoxParameter.outputKey, output)//
+        .put(FoxParameter.typeKey, FoxParameter.inputs.get(type))//
+        .put(FoxParameter.taskKey, FoxParameter.tasks.get(task))//
+        .put(FoxParameter.langKey, FoxParameter.langs.get(lang))//
+        .put(FoxParameter.foxlightKey, FoxParameter.foxlights.get(light))//
+        .put(FoxParameter.outputKey, FoxParameter.outputs.get(output))//
         .toString();
   }
 
   @Override
-  public String send() {
+  public IFoxApi send() {
     if (apiUrl == null) {
       throw new NullPointerException("ApiURL not set!");
     }
@@ -147,6 +149,17 @@ public class FoxApi implements IFoxApi {
         throw new RuntimeException(error, e);
       }
     }
-    return data.toString();
+    plainResponse = data.toString();
+    return this;
+  }
+
+  @Override
+  public String responseAsFile() {
+    return plainResponse;
+  }
+
+  @Override
+  public FoxResponse responseAsClasses() {
+    return new FoxResponse(plainResponse, output);
   }
 }

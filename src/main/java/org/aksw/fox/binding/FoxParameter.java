@@ -1,4 +1,4 @@
-package org.aksw.fox.binding.java;
+package org.aksw.fox.binding;
 
 import java.util.EnumMap;
 

@@ -1,4 +1,4 @@
-package org.aksw.fox.binding.java;
+package org.aksw.fox.binding;
 
 import java.net.URL;
 
@@ -23,6 +23,10 @@ public interface IFoxApi {
 
   public IFoxApi setLang(FoxParameter.LANG lang);
 
-  public String send();
+  public IFoxApi send();
+
+  public String responseAsFile();
+
+  public FoxResponse responseAsClasses();
 
 }
