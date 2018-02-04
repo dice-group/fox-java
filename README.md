@@ -9,19 +9,23 @@ Java bindings for FOX - Federated Knowledge Extraction Framework
 In [Examples.java][1] you can find an example.
 
 ```Java
-IFoxApi fox = new FoxApi();
+final IFoxApi fox = new FoxApi()
+     .setApiURL(new URL("http://0.0.0.0:4444/fox"))
+     .setTask(FoxParameter.TASK.RE)
+     .setOutputFormat(FoxParameter.OUTPUT.JSONLD)
+     .setLang(FoxParameter.LANG.EN)
+     .setInput("A. Einstein was born in Ulm.")
+     // .setLightVersion(FoxParameter.FOXLIGHT.ENBalie)
+     .send();
 
-URL api = new URL("http://0.0.0.0:4444/fox");
-fox.setApiURL(api);
+ final String jsonld = fox.responseAsFile();
+ final FoxResponse response = fox.responseAsClasses();
 
-fox.setTask(FoxParameter.TASK.NER);
-fox.setOutputFormat(FoxParameter.OUTPUT.TURTLE);
-fox.setLang(FoxParameter.LANG.EN);
-fox.setInput("The philosopher and mathematician Leibniz was born in Leipzig.");
-// fox.setLightVersion(FoxParameter.FOXLIGHT.ENStanford);
+ List<Entity> entities = response.getEntities();
+ List<Relation> relations = response.getRelations();
 
-String response = fox.send();
 ```
+
 ### Maven
     <dependencies>
       <dependency>
@@ -30,7 +34,7 @@ String response = fox.send();
         <version>78d7eb103e</version>
       </dependency>
     </dependencies>
-    
+
     <repositories>
         <repository>
             <id>jitpack.io</id>
