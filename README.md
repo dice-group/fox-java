@@ -31,7 +31,7 @@ final IFoxApi fox = new FoxApi()
       <dependency>
         <groupId>com.github.renespeck</groupId>
         <artifactId>fox-java</artifactId>
-        <version>78d7eb103e</version>
+        <version>e67a2bd475</version>
       </dependency>
     </dependencies>
 
